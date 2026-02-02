@@ -14,11 +14,17 @@ namespace DefenceTechSecurity.Yarax.Tests
             Assert.That(res.Keys.First, Is.EqualTo("example_link"));
 
             var match = res.Values.First();
-            Assert.That(match, Is.EqualTo(new YaraxMatchInfo[]
+            
+            Assert.That(match.Count, Is.EqualTo(2));
+            Assert.Multiple(() =>
             {
-                new("$url", 42, 18),
-                new("$url", 84, 19)
-,            }));
+                Assert.That(match[0].PatternName, Is.EqualTo("$url"));
+                Assert.That(match[1].PatternName, Is.EqualTo("$url"));
+
+                // Ignore the start offset as it might change with line endings
+                Assert.That(match[0].Length, Is.EqualTo(18));
+                Assert.That(match[1].Length, Is.EqualTo(19));
+            });
         }
 
         [Test]
