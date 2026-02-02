@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
-using Yarax.Native;
+using DefenceTechSecurity.Yarax.Native;
 
-namespace Yarax.Native
+namespace DefenceTechSecurity.Yarax.Native
 {
     public partial class NativeMethods
     {
@@ -10,7 +10,7 @@ namespace Yarax.Native
     }
 }
 
-namespace Yarax
+namespace DefenceTechSecurity.Yarax
 {
     public class YaraxBufferHandle : SafeNativePtrHandle
     {
@@ -36,7 +36,8 @@ namespace Yarax
         /// <returns>A byte array that contains the buffer's data. If the buffer is empty, returns an empty array.</returns>
         public byte[] ToArray() 
         {
-            ObjectDisposedException.ThrowIf(IsInvalid, "This object is in an invalid state");
+            if (IsInvalid || IsClosed)
+                throw new ObjectDisposedException("This object is in an invalid state");
 
             var buf = Marshal.PtrToStructure<YRX_BUFFER>(this.handle);
 
@@ -58,7 +59,8 @@ namespace Yarax
         /// <returns>A <see cref="Span{byte}"/> containing the buffer's data.</returns>
         public unsafe Span<byte> AsSpan()
         {
-            ObjectDisposedException.ThrowIf(IsInvalid, "This object is in an invalid state");
+            if (IsInvalid || IsClosed)
+                throw new ObjectDisposedException("This object is in an invalid state");
 
             var buf = Marshal.PtrToStructure<YRX_BUFFER>(this.handle);
             

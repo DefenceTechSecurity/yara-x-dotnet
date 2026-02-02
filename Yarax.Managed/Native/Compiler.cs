@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
-using Yarax.Native;
+using DefenceTechSecurity.Yarax.Native;
 
-namespace Yarax.Native
+namespace DefenceTechSecurity.Yarax.Native
 {
     public partial class NativeMethods
     {
@@ -45,7 +45,7 @@ namespace Yarax.Native
     }
 }
 
-namespace Yarax 
+namespace DefenceTechSecurity.Yarax
 {
     [Flags]
     public enum CompilerFlags : uint

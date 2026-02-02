@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -18,17 +18,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Yarax.Native\Yarax.Native.csproj" />
-    <ProjectReference Include="..\Yarax\Yarax.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Using Include="NUnit.Framework" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Tests\" />
     <Folder Include="Rules\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Yarax.Managed\Yarax.Managed.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-namespace Yarax.Tests
+namespace DefenceTechSecurity.Yarax.Tests
 {
     // Managed classes add C# idiomatic helpers on top of some native yarax wrappers
     public class ManagedTests

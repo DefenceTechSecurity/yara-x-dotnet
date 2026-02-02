@@ -417,3 +417,5 @@ FodyWeavers.xsd
 *.msm
 *.msp
 *.dll
+*.dylib
+*.so

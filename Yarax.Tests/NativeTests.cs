@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Yarax.Tests
+namespace DefenceTechSecurity.Yarax.Tests
 {
     // Tests for the raw wrappers of the native yarax API
     public class NativeTests
@@ -96,6 +96,22 @@ namespace Yarax.Tests
 
             hits = YaraxExamples.ScanWithNativeScanner(scanner, File.ReadAllBytes("Tests/file_example_XLSX_10.xlsx"));
             Assert.That(hits, Is.EqualTo(Array.Empty<string>()));
+        }
+
+        [Test]
+        public void TestDisposeException() 
+        {
+            var rules = YaraxExamples.CompileRules();
+            using var scanner = new YaraxScanner(rules);
+            
+            // Invalid: rules must be alive for the lifetime of the scanner object.
+            rules.Dispose();
+
+            // To prevent memory corruption the scanner ensures the managed wrapper for the rules is still valid
+            Assert.Throws<ObjectDisposedException>(() =>
+            {
+                scanner.Scan([1, 1, 1, 1, 1]);
+            });
         }
     }
 }

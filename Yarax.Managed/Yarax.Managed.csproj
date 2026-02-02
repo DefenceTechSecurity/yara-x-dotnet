@@ -7,52 +7,41 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<RootNamespace>DefenceTechSecurity.Yarax</RootNamespace>
-		<OutputType>none</OutputType>
-		
+
 		<!-- Library API version-->
 		<VersionPrefix>1.0.0</VersionPrefix>
 		<!-- Yara-x version we use as a reference-->
 		<VersionSuffix>yrx1.11.0</VersionSuffix>
 		<Version>$(VersionPrefix)-$(VersionSuffix)</Version>
-		
-		<AssemblyName>DefenceTechSecurity.Yarax</AssemblyName>
+
+		<AssemblyName>DefenceTechSecurity.Yarax.Managed</AssemblyName>
 		<PackageId>$(AssemblyName)</PackageId>
-		<Title>Yara-x dotnet</Title>
+		<Title>Yara-x dotnet (Without native binaries)</Title>
 		<Authors>DefenceTechSecurity</Authors>
 		<Company>DefenceTech</Company>
 		<PackageProjectUrl>https://github.com/DefenceTechSecurity/yara-x-dotnet</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/DefenceTechSecurity/yara-x-dotnet</RepositoryUrl>
-
+		
 		<PackageIcon>icon.jpg</PackageIcon>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageTags>yara-x, yara, pattern-matching, forensics, malware</PackageTags>
-		<Description>This package provides a cross-platform and lightweight C# wrapper for the yara-x native API. This package includes the native yara-x libraries for all the supported platforms.</Description>
+		<Description>This package provides a cross-platform and lightweight C# wrapper for the yara-x native API.</Description>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\icon.jpg">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
+	  <None Include="..\icon.jpg">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="capi-x86_64-apple-darwin\libyara_x_capi.dylib" Pack="true" PackagePath="runtimes/osx-x64/native/" />
-		<None Update="capi-aarch64-apple-darwin\libyara_x_capi.dylib" Pack="true" PackagePath="runtimes/osx-arm64/native/" />
-		<None Update="capi-x86_64-pc-windows-msvc\yara_x_capi.dll" Pack="true" PackagePath="runtimes/win-x64/native/" />
-		<None Update="capi-x86_64-unknown-linux-gnu\libyara_x_capi.so" Pack="true" PackagePath="runtimes/linux-x64/native/" />
-		<None Update="capi-aarch64-unknown-linux-gnu\libyara_x_capi.so" Pack="true" PackagePath="runtimes/linux-arm64/native/" />
-		
-		<None Update="readme.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="DefenceTechSecurity.Yarax.Managed" Version="$(Version)" />
+	  <None Update="readme.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
-using Yarax.Native;
+using DefenceTechSecurity.Yarax.Native;
 
-namespace Yarax.Native
+namespace DefenceTechSecurity.Yarax.Native
 {
     public partial class NativeMethods
     {
@@ -29,8 +29,8 @@ namespace Yarax.Native
     }
 }
 
-namespace Yarax 
-{ 
+namespace DefenceTechSecurity.Yarax
+{
     /// <summary>
     /// Represents a safe handle for a Yara-x scanner instance, enabling scanning operations over memory blocks or
     /// buffers using specified rules. This class is not thread-safe, however you can create as many instances as needed from the same <see cref="YaraxRulesHandle"/> instance.
@@ -49,13 +49,19 @@ namespace Yarax
 
         public static YaraxScannerHandle Create(YaraxRulesHandle rules)
         {
-            if (rules.IsInvalid)
-                throw new ArgumentException("The provided rules handle is invalid.", nameof(rules));
+            if (rules.IsInvalid || rules.IsClosed)
+                throw new ArgumentException("The provided rules handle is invalid.");
 
-            NativeMethods.yrx_scanner_create(rules, out YaraxScannerHandle scanner).Assert();            
+            NativeMethods.yrx_scanner_create(rules, out YaraxScannerHandle scanner).Assert();
 
             scanner.Rules = rules;
             return scanner;
+        }
+
+        private void EnsureRulesValid()
+        {
+            if (Rules.IsClosed)
+                throw new ObjectDisposedException("The Rules object of this scanner is not valid. The rules object must stay valid for the whole lifetime of this scanner object.");
         }
 
         /// <summary>
@@ -67,6 +73,8 @@ namespace Yarax
         /// <param name="data">The data to be scanned</param>
         public void ScanBlock(ulong offsetInStream, ReadOnlySpan<byte> data)
         {
+            EnsureRulesValid();
+
             if (data.Length == 0)
                 return;
 
@@ -81,6 +89,7 @@ namespace Yarax
         /// </remarks>
         public void FinishScanBlocks()
         {
+            EnsureRulesValid();
             NativeMethods.yrx_scanner_finish(this).Assert();
         }
 
@@ -89,6 +98,8 @@ namespace Yarax
         /// </summary>
         public void Scan(ReadOnlySpan<byte> data)
         {
+            EnsureRulesValid();
+
             if (data.Length == 0)
                 return;
 
@@ -98,7 +109,12 @@ namespace Yarax
         /// <summary>
         /// Sets a callback function that is called by the scanner for each rule that matched during a scan.
         /// </summary>
-        public void SetMatchingCallback(NativeMethods.YRX_RULE_CALLBACK? callback, nint userData = 0) 
+        /// <remarks+>
+        /// Setting the callback to null will remove the previous callback.
+        /// </remarks>
+        /// <param name="callback">The callback to be invoked</param>
+        /// <param name="userData">An arbitrary value that is passed to the callback when it is invoked</param>
+        public void SetMatchingCallback(NativeMethods.YRX_RULE_CALLBACK? callback, nint userData = 0)
         {
             ReleaseCurrentCallback();
 
@@ -109,7 +125,7 @@ namespace Yarax
             NativeMethods.yrx_scanner_on_matching_rule(this, Marshal.GetFunctionPointerForDelegate(callback), userData).Assert();
         }
 
-        void ReleaseCurrentCallback() 
+        void ReleaseCurrentCallback()
         {
             NativeMethods.yrx_scanner_on_matching_rule(this, IntPtr.Zero, IntPtr.Zero).Assert();
 

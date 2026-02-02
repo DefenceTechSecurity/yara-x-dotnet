@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
-using Yarax.Native;
+using DefenceTechSecurity.Yarax.Native;
 
-namespace Yarax.Native
+namespace DefenceTechSecurity.Yarax.Native
 {
     public partial class NativeMethods
     {
@@ -40,7 +40,7 @@ namespace Yarax.Native
     }
 }
 
-namespace Yarax 
+namespace DefenceTechSecurity.Yarax
 { 
     /// <summary>
     /// Represents a safe handle for a native Yara-x rules object, providing methods to serialize and deserialize rule

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Yarax
+namespace DefenceTechSecurity.Yarax
 {
     public enum YaraxResult
     {
@@ -30,7 +30,7 @@ namespace Yarax
     }
 }
 
-namespace Yarax.Native 
+namespace DefenceTechSecurity.Yarax.Native 
 {
     public abstract class SafeNativePtrHandle : SafeHandle
     {

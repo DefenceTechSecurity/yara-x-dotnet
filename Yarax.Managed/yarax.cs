@@ -1,6 +1,4 @@
-﻿using System.Data;
-
-namespace Yarax
+﻿namespace DefenceTechSecurity.Yarax
 {
     public abstract class BaseYaraxScanner : IDisposable
     {

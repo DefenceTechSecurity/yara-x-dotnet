@@ -1,4 +1,4 @@
-﻿namespace Yarax.Tests
+﻿namespace DefenceTechSecurity.Yarax.Tests
 {
     internal static class YaraxExamples
     {
