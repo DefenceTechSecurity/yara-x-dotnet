@@ -1,0 +1,29 @@
+name: .NET
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Build
+      run: |
+        chmod +x build_nuget.sh
+        ./build_nuget.sh
+    - uses: actions/upload-artifact@v4
+      with:
+        path: nupkgs/
+    - name: Prepare tests
+      run: |
+        dotnet build Yarax.Tests/Yarax.Tests.csproj
+        # Copy the current yarax library for the current platform to the test directory
+        # The test project does not use the nuget package reference out of convenience for working with it in visual studio
+        cp Yarax/capi-x86_64-unknown-linux-gnu/*.so Yarax.Tests/bin/Debug/net8.0/
+    - name: Run tests
+      run: dotnet test --no-build --verbosity normal
