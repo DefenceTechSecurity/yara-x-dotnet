@@ -13,7 +13,7 @@
 		<!-- Library API version-->
 		<VersionPrefix>1.0.0</VersionPrefix>
 		<!-- Yara-x version we use as a reference-->
-		<VersionSuffix>yrx1.11.0</VersionSuffix>
+		<VersionSuffix>beta.yrx1.12.0</VersionSuffix>
 		<Version>$(VersionPrefix)-$(VersionSuffix)</Version>
 		
 		<AssemblyName>DefenceTechSecurity.Yarax</AssemblyName>

@@ -8,6 +8,7 @@ dotnet pack ./Yarax.Managed/Yarax.Managed.csproj -c Release -o ./nupkgs
 
 # Build the project with all the native dependencies
 pushd Yarax
+chmod +x collect_binaries.sh
 ./collect_binaries.sh
 popd
 
