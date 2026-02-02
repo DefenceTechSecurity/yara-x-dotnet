@@ -6,8 +6,9 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<RootNamespace>DefenceTechSecurity.Yarax</RootNamespace>
-		<OutputType>none</OutputType>
+		
+		<!-- This package contains no managed code, do not build a dll file-->
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
 		
 		<!-- Library API version-->
 		<VersionPrefix>1.0.0</VersionPrefix>

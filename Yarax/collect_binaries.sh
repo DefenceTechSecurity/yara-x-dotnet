@@ -1,6 +1,13 @@
 #!/bin/bash
+set -e
 
 TargetTag="v1.12.0"
+
+# local runs: avoid downloading when we have at least one binary.
+if [ -f "capi-x86_64-pc-windows-msvc/yara_x_capi.dll" ]; then
+	echo "Binaries already present, skipping download."
+	exit 0
+fi
 
 wget "https://github.com/DefenceTechSecurity/yara-x-dotnet-native/releases/download/$TargetTag/capi-x86_64-unknown-linux-gnu.zip"
 wget "https://github.com/DefenceTechSecurity/yara-x-dotnet-native/releases/download/$TargetTag/capi-x86_64-pc-windows-msvc.zip"
