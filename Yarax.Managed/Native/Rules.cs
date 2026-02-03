@@ -55,7 +55,7 @@ namespace DefenceTechSecurity.Yarax
         /// <summary>
         /// Deserializes an instance of the <see cref="YaraxRulesHandle"/> class from a sequence of bytes produced by the <see cref="Serialize"/> method.
         /// </summary>
-        public static YaraxRulesHandle FromSerializedRules(Span<byte> data)
+        public static YaraxRulesHandle FromSerializedRules(ReadOnlySpan<byte> data)
         {
             NativeMethods.yrx_rules_deserialize(in data[0], (nuint)data.Length, out var res).Assert();
             return res;

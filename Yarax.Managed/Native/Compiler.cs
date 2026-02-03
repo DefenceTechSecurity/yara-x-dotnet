@@ -66,6 +66,7 @@ namespace DefenceTechSecurity.Yarax
         /// </summary>
         /// <param name="flags">A bitwise combination of values that specify options for the compiler. The default is CompilerFlags.None.</param>
         /// <returns>A handle to the newly created YARA-X compiler instance.</returns>
+        /// <remarks>The compiler does not own the rules it builds. Any <see cref="YaraxRulesHandle"/> object can still be used after the compiler is disposed.</remarks>
         public static YaraxCompilerHandle Create(CompilerFlags flags = CompilerFlags.None)
         {
             NativeMethods.yrx_compiler_create(flags, out var compiler).Assert();
@@ -135,6 +136,9 @@ namespace DefenceTechSecurity.Yarax
         /// <summary>
         /// Builds the source code previously added to the compiler, producing a <see cref="YaraxRulesHandle"/> object that can be used for scanning data. After calling this function the compiler is reset to its initial state, you can keep using it by adding more sources and calling this function again.
         /// </summary>
+        /// <returns>
+        /// A handle to the compiled rules. This object is not owned by the compiler and will remain valid after the compiler is disposed. The consumer of this API should call Dispose on the <see cref="YaraxRulesHandle"/> instance when it is no longer needed.
+        /// </returns>
         public YaraxRulesHandle Build() 
         {
             return NativeMethods.yrx_compiler_build(this);

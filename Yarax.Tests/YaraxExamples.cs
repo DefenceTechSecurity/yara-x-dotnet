@@ -12,11 +12,13 @@
             // Add rule via a file
             compiler.AddFile("Rules/binary_rule.yar");
 
+            // Set a namespace for the next rules
             compiler.SetNamespace("text_rule");
 
             // Add rule via a string
             compiler.AddRuleString("example_origin", File.ReadAllText("Rules/url_rule.yar"));
 
+            // Note that the returned rules stay valid even after the compiler is disposed.
             return compiler.Build();
         }
 
@@ -25,6 +27,7 @@
             var res = new List<string>();
 
             scanner.SetMatchingCallback((rule, _) => {
+                // rule is only valid within this callback. The type is defined as a ref struct so it can't escape this scope.
                 res.Add(rule.Identifier);
             });
 
@@ -68,7 +71,8 @@
         {
             var result = new List<string>();
 
-            // Block scanning mode has some limitations. See https://virustotal.github.io/yara-x/docs/api/c/c-/#limitations-of-the-block-scanning-mode
+            // Block scanning mode does not need all the memory in a single buffer and can scan Streams. 
+            // There are some limitations, see https://virustotal.github.io/yara-x/docs/api/c/c-/#limitations-of-the-block-scanning-mode
             using var scanner = new YaraxBlockScanner(rules);
             
             scanner.OnHit += (ref YaraxRuleHit hit) => { 
