@@ -5,31 +5,16 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<RootNamespace>DefenceTechSecurity.Yarax</RootNamespace>
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-
-		<!-- Library API version-->
-		<VersionPrefix>1.0.0</VersionPrefix>
-		<!-- Yara-x version we use as a reference-->
-		<VersionSuffix>beta.yrx1.12.0</VersionSuffix>
-		<Version>$(VersionPrefix)-$(VersionSuffix)</Version>
 
 		<AssemblyName>DefenceTechSecurity.Yarax.Managed</AssemblyName>
 		<PackageId>$(AssemblyName)</PackageId>
+
 		<Title>Yara-x dotnet (Without native binaries)</Title>
-		<Authors>DefenceTechSecurity</Authors>
-		<Company>DefenceTech</Company>
-		<PackageProjectUrl>https://github.com/DefenceTechSecurity/yara-x-dotnet</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/DefenceTechSecurity/yara-x-dotnet</RepositoryUrl>
-		
-		<PackageIcon>icon.jpg</PackageIcon>
-		<PackageReadmeFile>readme.md</PackageReadmeFile>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<IncludeSymbols>True</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<PackageTags>yara-x, yara, pattern-matching, forensics, malware</PackageTags>
-		<Description>This package provides a cross-platform and lightweight C# wrapper for the yara-x native API.</Description>
+		<Description>This package provides a cross-platform and lightweight C# wrapper for the yara-x native API. This version does not include native libraries.</Description>
+
+		<VersionSuffix>$(ChannelSuffix).yrx$(YaraxVersion)</VersionSuffix>
+		<Version>$(VersionPrefix)-$(VersionSuffix)</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -37,16 +22,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="..\icon.jpg">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	</ItemGroup>
+		<None Include="..\icon.jpg">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 
-	<ItemGroup>
-	  <None Update="readme.md">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
+		<None Update="readme.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 </Project>

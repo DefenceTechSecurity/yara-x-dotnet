@@ -1,0 +1,25 @@
+<Project>	
+	<!-- Versioning-->
+	<PropertyGroup>
+		<!-- Library API version-->
+		<VersionPrefix>1.0.0</VersionPrefix>
+		<!-- Yara-x version we use as a reference. This is a custom property-->
+		<YaraxVersion>1.12.0</YaraxVersion>
+		<ChannelSuffix>beta</ChannelSuffix>
+	</PropertyGroup>
+
+	<PropertyGroup>
+        <Authors>DefenceTechSecurity</Authors>
+		<Company>DefenceTech</Company>
+		<PackageProjectUrl>https://github.com/DefenceTechSecurity/yara-x-dotnet</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/DefenceTechSecurity/yara-x-dotnet</RepositoryUrl>
+		
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<PackageIcon>icon.jpg</PackageIcon>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<IncludeSymbols>True</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageTags>yara-x, yara, pattern-matching, forensics, malware</PackageTags>
+    </PropertyGroup>
+</Project>

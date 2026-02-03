@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<AssemblyName>DefenceTechSecurity.Yarax.Native</AssemblyName>
+		<PackageId>$(AssemblyName)</PackageId>
+		
+		<Title>Yara-x dotnet native binaries</Title>
+		<Description>This package includes the native yara-x libraries for all the supported platforms. This is supposed to be used alongside with the DefenceTechSecurity.Yarax.Managed package.</Description>
+
+		<!-- This package contains no managed code, do not build a dll file-->
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+
+		<!-- This package only contains yara-x binaries, we can match their version-->
+		<VersionPrefix>$(YaraxVersion)</VersionPrefix>
+		<VersionSuffix>$(ChannelSuffix)</VersionSuffix>
+		<Version>$(YaraxVersion)-$(VersionSuffix)</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\icon.jpg">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+
+		<None Update="readme.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="capi-x86_64-apple-darwin\libyara_x_capi.dylib" Pack="true" PackagePath="runtimes/osx-x64/native/" />
+		<None Update="capi-aarch64-apple-darwin\libyara_x_capi.dylib" Pack="true" PackagePath="runtimes/osx-arm64/native/" />
+		<None Update="capi-x86_64-pc-windows-msvc\yara_x_capi.dll" Pack="true" PackagePath="runtimes/win-x64/native/" />
+		<None Update="capi-x86_64-unknown-linux-gnu\libyara_x_capi.so" Pack="true" PackagePath="runtimes/linux-x64/native/" />
+		<None Update="capi-aarch64-unknown-linux-gnu\libyara_x_capi.so" Pack="true" PackagePath="runtimes/linux-arm64/native/" />
+	</ItemGroup>
+</Project>

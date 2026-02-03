@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yarax.Managed", "Yarax.Mana
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yarax.Tests", "Yarax.Tests\Yarax.Tests.csproj", "{87FAAF92-7F87-4C71-AB61-E92ACFE1275F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yarax", "Yarax\Yarax.csproj", "{1E8878E5-4F02-4ADE-9990-6EF37CFF0CB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yarax.Native", "Yarax.Native\Yarax.Native.csproj", "{1E8878E5-4F02-4ADE-9990-6EF37CFF0CB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

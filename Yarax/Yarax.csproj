@@ -1,59 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<Nullable>enable</Nullable>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		
-		<!-- This package contains no managed code, do not build a dll file-->
-		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-		
-		<!-- Library API version-->
-		<VersionPrefix>1.0.0</VersionPrefix>
-		<!-- Yara-x version we use as a reference-->
-		<VersionSuffix>beta.yrx1.12.0</VersionSuffix>
-		<Version>$(VersionPrefix)-$(VersionSuffix)</Version>
-		
 		<AssemblyName>DefenceTechSecurity.Yarax</AssemblyName>
 		<PackageId>$(AssemblyName)</PackageId>
+		
 		<Title>Yara-x dotnet</Title>
-		<Authors>DefenceTechSecurity</Authors>
-		<Company>DefenceTech</Company>
-		<PackageProjectUrl>https://github.com/DefenceTechSecurity/yara-x-dotnet</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/DefenceTechSecurity/yara-x-dotnet</RepositoryUrl>
+		<Description>This package provides a cross-platform and lightweight C# wrapper for the yara-x native API. Native binaries for the most common platforms are included.</Description>
 
-		<PackageIcon>icon.jpg</PackageIcon>
-		<PackageReadmeFile>readme.md</PackageReadmeFile>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<IncludeSymbols>True</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<PackageTags>yara-x, yara, pattern-matching, forensics, malware</PackageTags>
-		<Description>This package provides a cross-platform and lightweight C# wrapper for the yara-x native API. This package includes the native yara-x libraries for all the supported platforms.</Description>
+		<!-- This package contains no managed code, do not build a dll file-->
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+
+		<VersionSuffix>$(ChannelSuffix).yrx$(YaraxVersion)</VersionSuffix>
+		<Version>$(VersionPrefix)-$(VersionSuffix)</Version>
 	</PropertyGroup>
-
+	
 	<ItemGroup>
 		<None Include="..\icon.jpg">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
-	</ItemGroup>
 
-	<ItemGroup>
-		<None Update="capi-x86_64-apple-darwin\libyara_x_capi.dylib" Pack="true" PackagePath="runtimes/osx-x64/native/" />
-		<None Update="capi-aarch64-apple-darwin\libyara_x_capi.dylib" Pack="true" PackagePath="runtimes/osx-arm64/native/" />
-		<None Update="capi-x86_64-pc-windows-msvc\yara_x_capi.dll" Pack="true" PackagePath="runtimes/win-x64/native/" />
-		<None Update="capi-x86_64-unknown-linux-gnu\libyara_x_capi.so" Pack="true" PackagePath="runtimes/linux-x64/native/" />
-		<None Update="capi-aarch64-unknown-linux-gnu\libyara_x_capi.so" Pack="true" PackagePath="runtimes/linux-arm64/native/" />
-		
-		<None Update="readme.md">
+		<None Include="..\readme.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <PackageReference Include="DefenceTechSecurity.Yarax.Managed" Version="$(Version)" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Yarax.Managed\Yarax.Managed.csproj" />
+    <ProjectReference Include="..\Yarax.Native\Yarax.Native.csproj" />
+  </ItemGroup>
 </Project>
