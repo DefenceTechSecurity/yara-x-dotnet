@@ -1,14 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>netstandard2.0</TargetFramework>
 		<AssemblyName>DefenceTechSecurity.Yarax.Native</AssemblyName>
 		<PackageId>$(AssemblyName)</PackageId>
 		
 		<Title>Yara-x dotnet native binaries</Title>
 		<Description>This package includes the native yara-x libraries for all the supported platforms. This is supposed to be used alongside with the DefenceTechSecurity.Yarax.Managed package.</Description>
 
-		<!-- This package contains no managed code, do not build a dll file-->
-		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<!-- This package contains no managed code -->
 		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
 
 		<!-- This package only contains yara-x binaries, we can match their version-->
