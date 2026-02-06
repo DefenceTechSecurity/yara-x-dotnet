@@ -22,23 +22,6 @@
             return compiler.Build();
         }
 
-        public static List<string> ScanWithNativeScanner(YaraxScannerHandle scanner, Span<byte> data)
-        {
-            var res = new List<string>();
-
-            scanner.SetMatchingCallback((rule, _) => {
-                // rule is only valid within this callback. The type is defined as a ref struct so it can't escape this scope.
-                res.Add(rule.Identifier);
-            });
-
-            scanner.Scan(data);
-
-            // If the scanner is reused, clear the callback to avoid accidentally modifying res later
-            scanner.SetMatchingCallback(null);
-
-            return res;
-        }
-
         public static byte[] SerializeRules() 
         {
             using var rules = CompileRules();
@@ -46,14 +29,21 @@
             return rules.Serialize();
         }
 
+        public static YaraxRulesHandle DeserializeRules(byte[] serializedRules) 
+        {
+            // This deserializes the rules from a byte array previously produced by SerializeRules.
+            return YaraxRulesHandle.FromSerializedRules(serializedRules);
+        }
+
         public static Dictionary<string, List<YaraxMatchInfo>> ScanWithManagedScanner(YaraxRulesHandle rules, Span<byte> data)
         {
-            Dictionary<string, List<YaraxMatchInfo>> hits = [];
-
+            // The YaraxScanner provides C# idiomatic access to scanning functionality.
+            // See remarks about lifetime of the rules in the documentation comments.
             using var scanner = new YaraxScanner(rules);
 
+            Dictionary<string, List<YaraxMatchInfo>> hits = [];
             scanner.OnHit += (ref YaraxRuleHit hit) => {
-                // YaraxRuleHit provides efficient access to properties of the hit
+                // YaraxRuleHit caches results from the native api so calling the same property multiple times is efficient.
                 var rule = hit.Name;
 
                 if (hits.TryGetValue(rule, out var list))
@@ -81,6 +71,32 @@
 
             scanner.ScanStream(stream, 1024);
             return result;
+        }
+
+        public static YaraxScannerHandle CreateNativeScanner(YaraxRulesHandle rules)
+        {
+            // The YaraxScannerHandle scanner provides low-level access to the native scanner API.
+            // See remarks about lifetime of the rules in the documentation comments.
+            return YaraxScannerHandle.Create(rules);
+        }
+
+        public static List<string> ScanWithNativeScanner(YaraxScannerHandle scanner, Span<byte> data)
+        {
+            var res = new List<string>();
+            scanner.SetMatchingCallback((rule, _) => {
+                // YaraxRuleRef is the raw reference to the matched rule.
+                // It is only valid within this callback. The type is defined as a ref struct so it can't escape this scope.
+
+                // Every access to properties of the rule will call into native code.
+                res.Add(rule.Identifier);
+            });
+
+            scanner.Scan(data);
+
+            // If the scanner is reused, clear the callback to avoid accidentally modifying res later
+            scanner.SetMatchingCallback(null);
+
+            return res;
         }
 
         public static async Task<List<string>> ScanWithBLockScannerAsync(YaraxRulesHandle rules, Stream stream)

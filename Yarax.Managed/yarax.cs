@@ -9,8 +9,9 @@
         /// <summary>
         /// Occurs when a rule is triggered during evaluation.
         /// </summary>
-        /// <remarks>Subscribe to this event to receive notifications whenever a rule is hit. The event receives a <see cref="YaraxRuleHit"/> object containing details about the matched rule. This object is only valid during the scope of the event invocation.
-        /// .</remarks>
+        /// <remarks>
+        /// Subscribe to this event to receive notifications whenever a rule is hit. The event receives a <see cref="YaraxRuleHit"/> object containing details about the matched rule. This object is only valid during the scope of the event invocation.
+        /// </remarks>
         public event OnRuleHitDelegate? OnHit;
 
         public BaseYaraxScanner(YaraxRulesHandle rules)

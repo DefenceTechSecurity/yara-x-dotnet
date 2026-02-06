@@ -1,5 +1,7 @@
-﻿using System.Runtime.InteropServices;
-using DefenceTechSecurity.Yarax.Native;
+﻿using DefenceTechSecurity.Yarax.Native;
+using System.IO;
+using System.Runtime.InteropServices;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DefenceTechSecurity.Yarax.Native
 {
@@ -19,6 +21,10 @@ namespace DefenceTechSecurity.Yarax.Native
         public static partial YaraxResult yrx_compiler_add_source_with_origin(YaraxCompilerHandle compiler,
                                             [MarshalAs(UnmanagedType.LPUTF8Str)] string src,
                                             [MarshalAs(UnmanagedType.LPUTF8Str)] string origin);
+
+        [LibraryImport("yara_x_capi")]
+        public static partial YaraxResult yrx_compiler_add_include_dir(YaraxCompilerHandle compiler,
+           [MarshalAs(UnmanagedType.LPUTF8Str)] string dir);
 
         [LibraryImport("yara_x_capi")]
         public static partial YaraxResult yrx_compiler_new_namespace(YaraxCompilerHandle compiler,
@@ -84,6 +90,13 @@ namespace DefenceTechSecurity.Yarax
         /// </summary>
         public void BanModule(string moduleName, string errorTitle, string errorMsg) =>
             NativeMethods.yrx_compiler_ban_module(this, moduleName, errorTitle, errorMsg).Assert();
+
+        /// <summary>
+        /// Adds a directory to the list of directories where the compiler should look for included files.
+        /// </summary>
+        /// <param name="path"></param>
+        public void AddIncludeDir(string path) =>
+            NativeMethods.yrx_compiler_add_include_dir(this, path).Assert();
 
         /// <summary>
         /// Adds a YARA source code to be compiled, specifying an origin for the source code. 

@@ -68,15 +68,15 @@ namespace DefenceTechSecurity.Yarax.Tests
         public void NativeScanner()
         {
             using var rules = YaraxExamples.CompileRules();
-            using var scanner = YaraxScannerHandle.Create(rules);
+            using var scanner = YaraxExamples.CreateNativeScanner(rules);
             TestNativeScanner(scanner);
         }
 
         [Test]
         public void NativeScannerWithSerializedRules()
         {
-            using var rules = YaraxRulesHandle.FromSerializedRules(YaraxExamples.SerializeRules());
-            using var scanner = YaraxScannerHandle.Create(rules);
+            using var rules = YaraxExamples.DeserializeRules(YaraxExamples.SerializeRules());
+            using var scanner = YaraxExamples.CreateNativeScanner(rules);
             TestNativeScanner(scanner);
         }
 

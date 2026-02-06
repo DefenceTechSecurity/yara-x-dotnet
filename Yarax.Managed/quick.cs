@@ -11,7 +11,7 @@ namespace DefenceTechSecurity.Yarax
 
         readonly List<Hit> Hits = new();
 
-        public class CompilationException(YaraxResult Result, string JsonError) : YaraxException(Result, "Compilaion failed")
+        public class CompilationException(YaraxResult Result, string JsonError) : YaraxException(Result, "Compilation failed")
         {
             public readonly string JsonError = JsonError;
         }
@@ -58,7 +58,7 @@ namespace DefenceTechSecurity.Yarax
         /// <summary>
         /// Scans the specified data for pattern matches and returns the results.
         /// </summary>
-        /// <remarks>This method is thread-safe. Each call blocks until any previous scans have been completed.</remarks>
+        /// <remarks>This method is thread-safe. Each call blocks until any previous scans have been completed. For better multithreaded performances consider using <see cref="YaraxScanner"/>.</remarks>
         /// <returns>An array of <see cref="Hit"/> objects representing all matches found in the specified data. The array is
         /// empty if no matches are found.</returns>
         public Hit[] Scan(ReadOnlySpan<byte> data)
