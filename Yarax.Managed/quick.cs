@@ -16,7 +16,7 @@ namespace DefenceTechSecurity.Yarax
             public readonly string JsonError = JsonError;
         }
 
-        public record Hit(string RuleName, string[] RuleTags, List<YaraxMatchInfo> Matches);
+        public record Hit(string Namespace, string RuleName, string[] RuleTags, List<YaraxMatchInfo> Matches);
 
         private Yarax(YaraxRulesHandle rules)
         {
@@ -49,6 +49,7 @@ namespace DefenceTechSecurity.Yarax
         private void Scanner_OnHit(ref YaraxRuleHit Hit)
         {
             Hits.Add(new Hit(
+                Hit.Namespace,
                 Hit.Name,
                 Hit.Tags.ToArray(),
                 Hit.Matches
