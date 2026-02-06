@@ -18,8 +18,6 @@
 		<PackageIcon>icon.jpg</PackageIcon>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<IncludeSymbols>True</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageTags>yara-x, yara, pattern-matching, forensics, malware</PackageTags>
     </PropertyGroup>
 </Project>

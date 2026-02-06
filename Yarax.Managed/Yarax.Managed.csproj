@@ -15,6 +15,9 @@
 
 		<VersionSuffix>$(ChannelSuffix).yrx$(YaraxVersion)</VersionSuffix>
 		<Version>$(VersionPrefix)-$(VersionSuffix)</Version>
+
+		<IncludeSymbols>True</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
 	<ItemGroup>
