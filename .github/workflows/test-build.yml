@@ -1,4 +1,4 @@
-name: .NET
+name: Build and Test
 
 on:
   workflow_dispatch:
@@ -24,6 +24,6 @@ jobs:
         dotnet build Yarax.Tests/Yarax.Tests.csproj
         # Copy the current yarax library for the current platform to the test directory
         # The test project does not use the nuget package reference out of convenience for working with it in visual studio
-        cp Yarax/capi-x86_64-unknown-linux-gnu/*.so Yarax.Tests/bin/Debug/net8.0/
+        cp Yarax.Native/capi-x86_64-unknown-linux-gnu/*.so Yarax.Tests/bin/Debug/net8.0/
     - name: Run tests
       run: dotnet test --no-build --verbosity normal
