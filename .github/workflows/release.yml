@@ -6,6 +6,8 @@ on:
 
 jobs:
   build:
+    permissions:
+      id-token: write  # enable GitHub OIDC token issuance for this job, needed for NuGet publishing
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
