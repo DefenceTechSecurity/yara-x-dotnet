@@ -109,7 +109,7 @@ namespace DefenceTechSecurity.Yarax
         /// <summary>
         /// Sets a callback function that is called by the scanner for each rule that matched during a scan.
         /// </summary>
-        /// <remarks+>
+        /// <remarks>
         /// Setting the callback to null will remove the previous callback.
         /// </remarks>
         /// <param name="callback">The callback to be invoked</param>

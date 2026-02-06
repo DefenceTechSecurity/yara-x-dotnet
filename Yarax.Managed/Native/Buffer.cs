@@ -56,7 +56,7 @@ namespace DefenceTechSecurity.Yarax
         /// The returned span is valid only while the buffer is not disposed. Accessing the span
         /// after disposal may result in undefined behavior.
         /// </remarks>
-        /// <returns>A <see cref="Span{byte}"/> containing the buffer's data.</returns>
+        /// <returns>A span containing the buffer's data.</returns>
         public unsafe Span<byte> AsSpan()
         {
             if (IsInvalid || IsClosed)
