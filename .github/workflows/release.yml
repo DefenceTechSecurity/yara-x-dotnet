@@ -7,6 +7,7 @@ on:
 jobs:
   build:
     permissions:
+      contents: read # Allow checkout of this repo while it's private, see https://github.com/orgs/community/discussions/57621
       id-token: write  # enable GitHub OIDC token issuance for this job, needed for NuGet publishing
     runs-on: ubuntu-latest
     steps:
