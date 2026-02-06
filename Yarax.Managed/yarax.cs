@@ -92,19 +92,25 @@
             var total = 0L;
             var buffer = new byte[blockSize];
 
-            while (true)
+            try
             {
-                var read = stream.Read(buffer, 0, buffer.Length);
-                if (read == 0)
-                    break;
+                while (true)
+                {
+                    var read = stream.Read(buffer, 0, buffer.Length);
+                    if (read == 0)
+                        break;
 
-                total += read;
+                    total += read;
 
-                var span = new Span<byte>(buffer, 0, read);
-                AddBlock(span);
+                    var span = new Span<byte>(buffer, 0, read);
+                    AddBlock(span);
+                }
+            }
+            finally
+            {
+                FinishScan();
             }
 
-            FinishScan();
             return total;
         }
 
@@ -124,26 +130,24 @@
             var total = 0L;
             var buffer = new byte[blockSize];
 
-            while (!cancellationToken.IsCancellationRequested)
+            try
             {
-                int read;
-
-                try
+                while (!cancellationToken.IsCancellationRequested)
                 {
+                    int read;
+
                     read = await stream.ReadAsync(buffer, cancellationToken).ConfigureAwait(false);
-                }
-                catch (OperationCanceledException)
-                {
-                    break;
-                }
+                    if (read == 0)
+                        break;
 
-                if (read == 0)
-                    break;
-
-                total += read;
-                AddBlock(buffer.AsSpan(0, read));
+                    total += read;
+                    AddBlock(buffer.AsSpan(0, read));
+                }
             }
-            FinishScan();
+            finally
+            {
+                FinishScan();
+            }
 
             return total;
         }
