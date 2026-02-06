@@ -14,6 +14,19 @@
         }
 
         [Test]
+        public void TestQuickScanString()
+        {
+            using var yarax = Yarax.Compile(File.ReadAllText("Rules/url_rule.yar"));
+
+            var str = "the url is http://example.com";
+            var results = yarax.Scan(str);
+
+            Assert.That(results.Length, Is.EqualTo(1));
+            Assert.That(results[0].RuleName, Is.EqualTo("example_link"));
+            Assert.That(results[0].Matches.First().Offset, Is.EqualTo(str.IndexOf("http")));
+        }
+
+        [Test]
         public void TestCompilationError()
         {
             Assert.Throws<Yarax.CompilationException>(() => 

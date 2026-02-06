@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace DefenceTechSecurity.Yarax
 {
     /// <summary>
@@ -9,7 +11,7 @@ namespace DefenceTechSecurity.Yarax
         readonly YaraxScanner Scanner;
         readonly object SyncRoot = new();
 
-        readonly List<Hit> Hits = new();
+        readonly List<Hit> Hits = [];
 
         public class CompilationException(YaraxResult Result, string JsonError) : YaraxException(Result, "Compilation failed")
         {
@@ -70,6 +72,20 @@ namespace DefenceTechSecurity.Yarax
                 Scanner.Scan(data);
                 return Hits.ToArray();
             }
+        }
+
+        /// <summary>
+        /// Scans the specified string for pattern matches and returns the results.
+        /// </summary>
+        /// <param name="str">The stirng to be scanned</param>
+        /// <param name="encoding">The encoding used for the string. When this is not specified it defaults to UTF8.</param>
+        /// <remarks>This method is thread-safe. Each call blocks until any previous scans have been completed. For better multithreaded performances consider using <see cref="YaraxScanner"/>.</remarks>
+        /// <returns>An array of <see cref="Hit"/> objects representing all matches found in the specified data. The array is
+        /// empty if no matches are found.</returns>
+        public Hit[] Scan(string str, Encoding? encoding = null)
+        {
+            encoding ??= Encoding.UTF8;
+            return Scan(encoding.GetBytes(str));
         }
 
         public void Dispose()
