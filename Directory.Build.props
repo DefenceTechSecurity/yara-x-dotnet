@@ -5,7 +5,11 @@
 		<VersionPrefix>1.0.0</VersionPrefix>
 		<!-- Yara-x version we use as a reference. This is a custom property-->
 		<YaraxVersion>1.12.0</YaraxVersion>
-		<ChannelSuffix>beta</ChannelSuffix>
+
+		<!-- Since we don't apply changes to the native libraries we can keep their channel fixed most of the time -->
+		<!-- This allows to update the managed package without having to push multiple managed packages that are effectively the same except for versioning metadata -->
+		<ManagedChannelSuffix>beta</ManagedChannelSuffix>
+		<NativeChannelSuffix>release</NativeChannelSuffix>
 	</PropertyGroup>
 
 	<PropertyGroup>

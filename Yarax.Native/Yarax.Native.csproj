@@ -12,7 +12,7 @@
 
 		<!-- This package only contains yara-x binaries, we can match their version-->
 		<VersionPrefix>$(YaraxVersion)</VersionPrefix>
-		<VersionSuffix>$(ChannelSuffix)</VersionSuffix>
+		<VersionSuffix>$(NativeChannelSuffix)</VersionSuffix>
 		<Version>$(YaraxVersion)-$(VersionSuffix)</Version>
 	</PropertyGroup>
 
