@@ -2,7 +2,7 @@
 
 This library provides .NET bindings for [yara-x](https://github.com/VirusTotal/yara-x).
 
-The bindings are designed to be safe from memory leaks using the `SafeHandle` pattern, multiple levels of abstraction are provided to allow both simple usage in quick projects as well as lightwight access to the underlying API for maximum performance.
+The bindings are designed to be safe from memory leaks using the `SafeHandle` pattern, multiple levels of abstraction are provided to allow both simple usage in quick projects as well as lightwight access to the underlying API for maximum performance. Currently the bindings cover the base API for essential yara functionality but the libray is designed to be easily extended even in client code.
 
 The nuget package also provides binaries for the following platforms:
 - Windows: x64
@@ -84,4 +84,4 @@ This repository contains the following projects:
 
 `Yarax.Tests` is set up in a way that allow easy testing and debugging from the Test Explorer in Visual Studio. It only includes the managed project as a reference so for testing it locally you will need to manually copy the native binary of yara-x for your platform to the build output folder of the tests project.
 
-Publishing to the nuget feed is done automatically via Github Actions with Trusted Publishing on releases.
+Publishing to the nuget feed is done automatically via Github Actions with [Trusted Publishing](https://learn.microsoft.com/en-us/nuget/nuget-org/trusted-publishing) on releases.
