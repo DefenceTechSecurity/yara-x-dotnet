@@ -8,7 +8,7 @@
 
 		<!-- Since we don't apply changes to the native libraries we can keep their channel fixed most of the time -->
 		<!-- This allows to update the managed package without having to push multiple managed packages that are effectively the same except for versioning metadata -->
-		<ManagedChannelSuffix>beta</ManagedChannelSuffix>
+		<ManagedChannelSuffix>release</ManagedChannelSuffix>
 		<NativeChannelSuffix>release</NativeChannelSuffix>
 	</PropertyGroup>
 
