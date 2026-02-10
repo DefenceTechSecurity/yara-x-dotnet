@@ -2,7 +2,7 @@
 
 This library provides .NET bindings for [yara-x](https://github.com/VirusTotal/yara-x).
 
-The bindings are designed to be safe from memory leaks using the `SafeHandle` pattern, multiple levels of abstraction are provided to allow both simple usage in quick projects as well as lightwight access to the underlying API for maximum performance. Currently the bindings cover the base API for essential yara functionality but the libray is designed to be easily extended even in client code.
+The bindings are designed to be safe from memory leaks using the `SafeHandle` pattern, multiple levels of abstraction are provided to allow both simple usage in quick projects as well as lightweight access to the underlying API for maximum performance. Currently the bindings cover the base API for essential yara functionality but the library is designed to be easily extended even in client code.
 
 The nuget package also provides binaries for the following platforms:
 - Windows: x64
@@ -43,7 +43,7 @@ foreach (var result in results)
 
 # Advanced usage
 
-The core classes that directly wrap the yara-x API are `YaraxCompilerHandlde`, `YaraxScannerHandle` and `YaraxRulesHandle`. These allow for proper multithreading usage and caching rules via the serialization API. Documentation for every class is provided in the form of XML documentation comments.
+The core classes that directly wrap the yara-x API are `YaraxCompilerHandle`, `YaraxScannerHandle` and `YaraxRulesHandle`. These allow for proper multithreading usage and caching rules via the serialization API. Documentation for every class is provided in the form of XML documentation comments.
 
 Any main handle that refers to a user-managed yara-x object is wrapped in a `SafeHandle`, every temporary object that is only returned inside a callback or a specific scope is wrapped in a [`ref struct`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct) so it can't escape the scope where it is valid.
 
