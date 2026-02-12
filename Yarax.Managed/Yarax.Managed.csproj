@@ -14,8 +14,8 @@
 		<Title>Yara-x dotnet (Without native binaries)</Title>
 		<Description>This package provides a cross-platform and lightweight C# wrapper for the yara-x native API. This version does not include native libraries.</Description>
 
-		<VersionSuffix>$(ManagedChannelSuffix).yrx$(YaraxVersion)</VersionSuffix>
-		<Version>$(VersionPrefix)-$(VersionSuffix)</Version>
+		<VersionSuffix>$(ManagedChannelSuffix)</VersionSuffix>
+		<Version>$(VersionPrefix)$(VersionSuffix)</Version>
 
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>

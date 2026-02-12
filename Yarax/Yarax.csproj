@@ -12,8 +12,8 @@
 		<IncludeBuildOutput>false</IncludeBuildOutput>
 		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
 
-		<VersionSuffix>$(ManagedChannelSuffix).yrx$(YaraxVersion)</VersionSuffix>
-		<Version>$(VersionPrefix)-$(VersionSuffix)</Version>
+		<VersionSuffix>$(ManagedChannelSuffix)</VersionSuffix>
+		<Version>$(VersionPrefix)$(VersionSuffix)</Version>
 	</PropertyGroup>
 	
 	<ItemGroup>

@@ -8,8 +8,10 @@
 
 		<!-- Since we don't apply changes to the native libraries we can keep their channel fixed most of the time -->
 		<!-- This allows to update the managed package without having to push multiple managed packages that are effectively the same except for versioning metadata -->
-		<ManagedChannelSuffix>release</ManagedChannelSuffix>
-		<NativeChannelSuffix>release</NativeChannelSuffix>
+		<!-- When the suffix is not empty, nuget treats our package as a pre-release -->
+		<!-- Example values for these: -beta -beta.1 -beta.2 and so on -->
+		<ManagedChannelSuffix></ManagedChannelSuffix>
+		<NativeChannelSuffix></NativeChannelSuffix>
 	</PropertyGroup>
 
 	<PropertyGroup>
