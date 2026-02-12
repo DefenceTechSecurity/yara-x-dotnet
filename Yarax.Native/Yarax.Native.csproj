@@ -5,7 +5,7 @@
 		<PackageId>$(AssemblyName)</PackageId>
 		
 		<Title>Yara-x dotnet native binaries</Title>
-		<Description>This package includes the native yara-x libraries for all the supported platforms. This is supposed to be used alongside with the DefenceTechSecurity.Yarax.Managed package.</Description>
+		<Description>This package includes the native yara-x libraries for all the supported platforms. This is supposed to be used alongside with the DefenceTechSecurity.Yarax.Managed package. The version number of this package matches the version of the native yara-x binaries.</Description>
 
 		<!-- This package contains no managed code -->
 		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>

@@ -1,6 +1,6 @@
 ﻿# Yara-x-dotnet
 
-This package provides .NET/C# yara-x bindings as well as the native binaries for Windows, Linux and MacOS.
+This package provides .NET/C# yara-x bindings as well as the native binaries for Windows, Linux and MacOS. There is no managed code in this package, as such the version string reflects the version of the underlying [yara-x release](https://github.com/VirusTotal/yara-x/releases)
 
 For usage examples, licensing information and more see the project github page https://github.com/DefenceTechSecurity/yara-x-dotnet
 
