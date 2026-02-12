@@ -9,6 +9,8 @@ The nuget package also provides binaries for the following platforms:
 - Linux: x64, arm64
 - Osx: x64, arm64
 
+Yara-x dotnet is developed by the Malware Lab team at Defence Tech and released under the MIT license. Contributions are welcomed, start by opening an issue or a pull request.
+
 # Quick start
 
 Install the nuget package: 
