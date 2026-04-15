@@ -2,9 +2,9 @@
 	<!-- Versioning-->
 	<PropertyGroup>
 		<!-- Library API version-->
-		<VersionPrefix>1.0.1</VersionPrefix>
+		<VersionPrefix>1.1.0</VersionPrefix>
 		<!-- Yara-x version we use as a reference. This is a custom property-->
-		<YaraxVersion>1.12.0</YaraxVersion>
+		<YaraxVersion>1.15.0</YaraxVersion>
 
 		<!-- Since we don't apply changes to the native libraries we can keep their channel fixed most of the time -->
 		<!-- This allows to update the managed package without having to push multiple managed packages that are effectively the same except for versioning metadata -->
