@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-TargetTag="v1.12.0"
+TargetTag="v1.15.0"
 
 # local runs: avoid downloading when we have at least one binary.
 if [ -f "capi-x86_64-pc-windows-msvc/yara_x_capi.dll" ]; then
